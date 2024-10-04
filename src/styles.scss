@@ -1,0 +1,56 @@
+@use '@angular/material' as mat;
+@use '@fontsource/metropolis/scss/mixins' as Metropolis;
+@use '@fontsource/poppins/scss/mixins' as Poppins;
+@include mat.core();
+
+$angular-material-theming-css-vars-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+      use-system-variables: true,
+    ),
+    typography: (
+      brand-family:
+        'Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
+      plain-family:
+        'Metropolis, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif',
+      use-system-variables: true,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+:root {
+  @include mat.all-component-themes($angular-material-theming-css-vars-theme);
+  @include mat.typography-hierarchy($angular-material-theming-css-vars-theme);
+  @include mat.system-level-colors($angular-material-theming-css-vars-theme);
+  @include mat.system-level-typography(
+    $angular-material-theming-css-vars-theme
+  );
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font: mat.get-theme-typography(
+    $angular-material-theming-css-vars-theme,
+    display-medium,
+    font
+  );
+}
+h1,
+h2,
+h3,
+h4 {
+  font: mat.get-theme-typography(
+    $angular-material-theming-css-vars-theme,
+    headline-medium,
+    font
+  );
+}
